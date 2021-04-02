@@ -44,3 +44,18 @@ void AdjacencyList :: insertEdge(AdjacencyNode* h){
     h->setNext(head);
     head = h;
 }
+
+
+//adjacency graph methods
+
+AdjacencyGraph :: AdjacencyGraph(int numVertices){
+    graph = new AdjacencyList*[numVertices];
+}
+
+void AdjacencyGraph :: setList(int index, AdjacencyList* list){
+    graph[index] = list;
+}
+
+AdjacencyList* AdjacencyGraph :: getList(int index){
+    return graph[index];
+}

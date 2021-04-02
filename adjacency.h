@@ -1,4 +1,5 @@
-
+#ifndef ADJ_H
+#define ADJ_H
 
 //An adjacency node is a single vertex showing an edge between the index and the vertex it represents
 //Each node has a weight, a vertex, and a pointer to the next node in the list
@@ -43,10 +44,21 @@ class AdjacencyList
 
 };
 
-
 //Array object to hold the adjacency lists (and honestly mostly to keep all the file i/o methods in ONE PLACE)
 class AdjacencyGraph
 {
     private:
-    AdjacencyList* graph[];
+    AdjacencyList** graph;
+
+    public:
+    AdjacencyGraph(int numVertices);
+    
+    void setList(int index, AdjacencyList* list);
+    AdjacencyList* getList(int index);
+
+
+
 };
+
+
+#endif
