@@ -38,7 +38,7 @@ class AdjacencyList
     AdjacencyNode* head;
 
     public:
-    AdjacencyList();
+    AdjacencyList(AdjacencyNode* h);
 
     void insertEdge(AdjacencyNode* h);
 

@@ -6,10 +6,35 @@
 
 using std::cout;
 
-AdjacencyList** createGraph(string fileName){
-    //open file and read the contents into the graph
-    ifstream infile;
+AdjacencyGraph* createGraph(string fileName, bool d){
+    string processing;
+    bool isDirected = d;
 
-    //make the file 
+
+    //open file
+    ifstream infile;
+    infile.open(fileName);
+    if(infile.is_open()){
+
+        //create the graph
+        getline(infile, processing);
+        AdjacencyGraph* graph = new AdjacencyGraph(processing[0] - '0');
+        //TODO: DEBUG: make sure that actually worked lmao
+        
+
+
+
+        //read the contents into the graph 
+
+
+        infile.close();
+        //create the graph
+
+    }
+    else{
+        //error: file can't be opened
+    }
+
+    
     
 }

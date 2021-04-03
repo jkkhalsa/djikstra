@@ -40,6 +40,10 @@ int AdjacencyNode :: getVertex(){
 
 //adjacency list methods
 
+AdjacencyList :: AdjacencyList(AdjacencyNode* h){
+    head = h;
+}
+
 void AdjacencyList :: insertEdge(AdjacencyNode* h){
     h->setNext(head);
     head = h;
