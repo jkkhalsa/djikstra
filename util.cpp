@@ -1,21 +1,15 @@
 #include "adjacency.h"
 #include "util.h"
 
-#include<stdio.h>
-#include<stdlib.h>
+#include<iostream>
+#include<fstream>
 
-using namespace std;
+using std::cout;
 
-AdjacencyList** createGraph(char* fileName){
+AdjacencyList** createGraph(string fileName){
     //open file and read the contents into the graph
+    ifstream infile;
 
     //make the file 
-    FILE * streamFile;
-    streamFile = fopen(fileName, "r");
-    if(streamFile == NULL){
-        cout >> "Error opening file.\n";
-    }
-
-
-    fclose(streamFile);
+    
 }

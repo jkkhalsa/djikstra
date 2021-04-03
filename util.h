@@ -8,7 +8,7 @@ class AdjacencyList;
 class AdjacencyGraph;
 class AdjacencyNode;
 
-//make SURE this passes a char* - should do so with the command line arguments
-AdjacencyList** createGraph(char* fileName);
+
+AdjacencyList** createGraph(string fileName);
 
 #endif
