@@ -1,5 +1,7 @@
 #include "adjacency.h"
 
+using namespace std;
+
 
 //adjacency node methods
 
@@ -62,4 +64,9 @@ void AdjacencyGraph :: setList(int index, AdjacencyList* list){
 
 AdjacencyList* AdjacencyGraph :: getList(int index){
     return graph[index];
+}
+
+string AdjacencyGraph :: printGraph(){
+    
+
 }

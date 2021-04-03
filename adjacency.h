@@ -1,6 +1,10 @@
 #ifndef ADJ_H
 #define ADJ_H
 
+#include <string>
+
+using namespace std;
+
 //An adjacency node is a single vertex showing an edge between the index and the vertex it represents
 //Each node has a weight, a vertex, and a pointer to the next node in the list
 class AdjacencyNode
@@ -56,7 +60,7 @@ class AdjacencyGraph
     void setList(int index, AdjacencyList* list);
     AdjacencyList* getList(int index);
 
-
+    string printGraph();
 
 };
 
