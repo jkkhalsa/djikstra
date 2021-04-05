@@ -46,6 +46,8 @@ class AdjacencyList
 
     void insertEdge(AdjacencyNode* h);
 
+    AdjacencyNode* getHead();
+
 };
 
 //Array object to hold the adjacency lists (and honestly mostly to keep all the file i/o methods in ONE PLACE)
@@ -53,6 +55,7 @@ class AdjacencyGraph
 {
     private:
     AdjacencyList** graph;
+    int graphLength;
 
     public:
     AdjacencyGraph(int numVertices);

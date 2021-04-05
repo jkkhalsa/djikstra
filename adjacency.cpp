@@ -2,6 +2,8 @@
 
 using namespace std;
 
+#include <iostream>
+
 
 //adjacency node methods
 
@@ -44,18 +46,25 @@ int AdjacencyNode :: getVertex(){
 
 AdjacencyList :: AdjacencyList(AdjacencyNode* h){
     head = h;
+    cout << "\ncreated adjacency list";
 }
 
 void AdjacencyList :: insertEdge(AdjacencyNode* h){
+    cout << "\ninsert edge called";
     h->setNext(head);
     head = h;
+}
+
+AdjacencyNode* AdjacencyList :: getHead(){
+    return head;
 }
 
 
 //adjacency graph methods
 
 AdjacencyGraph :: AdjacencyGraph(int numVertices){
-    graph = new AdjacencyList*[numVertices];
+    graph = new AdjacencyList*[numVertices+1];
+    graphLength = numVertices+1;
 }
 
 void AdjacencyGraph :: setList(int index, AdjacencyList* list){
@@ -67,6 +76,18 @@ AdjacencyList* AdjacencyGraph :: getList(int index){
 }
 
 string AdjacencyGraph :: printGraph(){
-    
-
+    string result = "Current List:";
+    AdjacencyNode* current;
+    //mostly for debug purposes to see what's in the graph
+    for(int i = 1; i < graphLength; i++){
+        result += "\n" + i;
+        if(graph[i]->getHead() != NULL){
+            result += " -> " + graph[i]->getHead()->getVertex();
+            while(current->returnNext() != NULL || current->returnNext() != nullptr){
+                current = current->returnNext();
+                result += " -> " + current->getVertex();
+            }
+        }
+    }
+    return result;
 }
