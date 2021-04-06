@@ -11,3 +11,7 @@ network.txt
 .vscode/settings.json
 .vscode/targets.log
 .vscode/tasks.json
+run
+util.o
+adjacency.o
+main.o

@@ -9,6 +9,7 @@ using std::cout;
 AdjacencyGraph* createGraph(string fileName, bool d){
     int numVertices;
     int numEdges;
+    int loop;
     bool isDirected = d;
     int vertexU;
     int vertexV;
@@ -24,6 +25,7 @@ AdjacencyGraph* createGraph(string fileName, bool d){
         AdjacencyGraph* graph = new AdjacencyGraph(numVertices);
         infile >> numEdges;
         cout << "\n numEdges is " << numEdges;
+        infile >> loop;
         //TODO: DEBUG: make sure that actually worked lmao
 
         //read the contents into the graph
@@ -40,7 +42,7 @@ AdjacencyGraph* createGraph(string fileName, bool d){
             //insert vertex V into U's adjacency list
             if(graph->getList(vertexU) != NULL){
                 graph->getList(vertexU)->insertEdge(new AdjacencyNode(vertexV, weight));
-                cout << "\nedge inserted successfully on " << vertexU;
+                cout << "\nedge inserted: " << vertexU << " -> " << vertexV;
             }
             else{
                 graph->setList(vertexU, new AdjacencyList(new AdjacencyNode(vertexV, weight)));
@@ -48,15 +50,17 @@ AdjacencyGraph* createGraph(string fileName, bool d){
             
 
             //if undirected, insert vertex U into V's adjacency list
-            if(isDirected){
+            if(!isDirected){
                 if(graph->getList(vertexV) != NULL){
                     graph->getList(vertexV)->insertEdge(new AdjacencyNode(vertexU, weight));
-                    cout << "\nedge inserted successfully on " << vertexV;
+                    cout << "\nedge inserted: " << vertexV << " -> " << vertexU;
+                    cout << "\nedge "<< vertexU <<  " inserted successfully on " << vertexV;
                 }
                 else{
                     graph->setList(vertexV, new AdjacencyList(new AdjacencyNode(vertexU, weight)));
                 }
             }
+            infile >> loop; //get that out of the way
         }
         infile.close();
         return graph;

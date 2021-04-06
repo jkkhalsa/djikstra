@@ -76,18 +76,18 @@ AdjacencyList* AdjacencyGraph :: getList(int index){
 }
 
 string AdjacencyGraph :: printGraph(){
-    string result = "Current List:";
+    cout << "printGraph called\n";
+    cout << "Current List:";
     AdjacencyNode* current;
     //mostly for debug purposes to see what's in the graph
     for(int i = 1; i < graphLength; i++){
-        result += "\n" + i;
-        if(graph[i]->getHead() != NULL){
-            result += " -> " + graph[i]->getHead()->getVertex();
-            while(current->returnNext() != NULL || current->returnNext() != nullptr){
+        cout << "\n" << i;
+        current = graph[i]->getHead();
+        cout << " -> " << graph[i]->getHead()->getVertex();
+            while(current->returnNext() != NULL && current->returnNext() != nullptr){
                 current = current->returnNext();
-                result += " -> " + current->getVertex();
+                cout << " > " + current->getVertex();
             }
-        }
     }
-    return result;
+    return "\n";
 }
