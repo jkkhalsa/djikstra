@@ -27,10 +27,18 @@ AdjacencyNode :: AdjacencyNode(int v, float w){
 
 void AdjacencyNode :: setNext(AdjacencyNode* n){
     next = n;
+    cout << "\nnext on " << vertex << " is set to " << n->getVertex();
 }
 
 AdjacencyNode* AdjacencyNode :: returnNext(){
     return next;
+}
+
+bool AdjacencyNode :: isTail(){
+    if(next == nullptr){
+        return true;
+    }
+    return false;
 }
 
 void AdjacencyNode :: setVertex(int v){
@@ -83,10 +91,10 @@ string AdjacencyGraph :: printGraph(){
     for(int i = 1; i < graphLength; i++){
         cout << "\n" << i;
         current = graph[i]->getHead();
-        cout << " -> " << graph[i]->getHead()->getVertex();
-            while(current->returnNext() != NULL && current->returnNext() != nullptr){
+        cout << " -> " << current->getVertex();
+            while(!(current->isTail())){
                 current = current->returnNext();
-                cout << " > " + current->getVertex();
+                cout << " > " << current->getVertex();
             }
     }
     return "\n";

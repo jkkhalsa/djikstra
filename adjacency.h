@@ -25,6 +25,8 @@ class AdjacencyNode
     void setNext(AdjacencyNode* n);
     AdjacencyNode* returnNext();
 
+    bool isTail();
+
     void setVertex(int v);
     int getVertex();
 

@@ -7,10 +7,23 @@
 #include <string>
 using namespace std;
 
+class Vertex{
+
+    private:
+    int color; //1 for white, 2 for grey, 3 for black
+    int pi;     //predecessor
+    float d;    //distance from source
+    int pos;    //index in the heap array
+
+    Vertex();
+
+};
+
 class Element
 {
     private:
-    int key;
+    int vertex;
+    float key;
 
 public:
     Element();

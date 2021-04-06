@@ -3,6 +3,11 @@
 
 using namespace std;
 
+Vertex :: Vertex(){
+    color = 1;
+    pi = NULL;
+    d = -1;
+}
 
 //implementations of the Element class
 Element :: Element(){
