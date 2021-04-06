@@ -15,3 +15,6 @@ run
 util.o
 adjacency.o
 main.o
+heap.o
+util.o
+main.o
