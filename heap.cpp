@@ -3,11 +3,43 @@
 
 using namespace std;
 
+
+//implementing the VERTEX class
 Vertex :: Vertex(){
     color = 1;
-    pi = NULL;
-    d = -1;
+    pi = nullptr;
+    distance = -1;
 }
+
+int Vertex :: getColor(){
+    return color;
+}
+void Vertex :: setColor(int c){
+    color = c;
+}
+
+Vertex* Vertex :: getPi(){
+    return pi;
+}
+void Vertex :: setPi(Vertex* predecessor){
+    pi = predecessor;
+}
+
+float Vertex :: getDistance(){
+    return distance;
+}
+void Vertex :: setDistance(float d){
+    distance = d;
+}
+
+int Vertex :: getPosition(){
+    return position;
+}
+void Vertex :: setPosition(int pos){
+    position = pos;
+}
+
+
 
 //implementations of the Element class
 Element :: Element(){
@@ -17,6 +49,11 @@ Element :: Element(){
 Element :: Element(int k){
     key = k;
     return;
+}
+
+Element :: Element(int k, Vertex* v){
+    key = k;
+    vertex = v;
 }
 
 int Element :: getKey(){
@@ -30,14 +67,14 @@ void Element :: setKey(int k){
 
 
 
-//DYNAMIC ALLOCATION used with "new" keyword
+
+//implementing the HEAP class
 Heap :: Heap(){
     capacity = 0;
     size = 0;
     H = new Element[capacity + 1];
 }
 
-//DYNAMIC ALLOCATION used with "new" keyword
 Heap :: Heap(int n){
     capacity = n;
     size = 0;
@@ -115,7 +152,7 @@ int Heap :: getParentIndex(int index){
 }
 
 
-void Heap :: minHeapify(int parentIndex, bool flag){
+void Heap :: minHeapify(int parentIndex){
     int leftIndex = getLeftIndex(parentIndex);
     int rightIndex = getRightIndex(parentIndex);
     int smallest = parentIndex;
@@ -131,21 +168,16 @@ void Heap :: minHeapify(int parentIndex, bool flag){
         temp = H[smallest].getKey();
         H[smallest].setKey(H[parentIndex].getKey());
         H[parentIndex].setKey(temp);
-        if(flag){
-            callCount++;
-        }
-        minHeapify(smallest, flag);
+        minHeapify(smallest);
     }
     return;
 }
 
-int Heap :: buildHeap(bool flag){
-    callCount = 0;
+void Heap :: buildHeap(){
     for(int i = (size/2)-1; i >= 0; i--){
-        minHeapify(i, flag);
-        callCount++;
+        minHeapify(i);
     }
-    return callCount;
+    return;
 }
 
 //returns true if it's overflowing, false if it won't
@@ -169,26 +201,23 @@ bool Heap :: insert(int element){
     return false;
 }
 
-void Heap :: extractMin(bool printFlag){
+void Heap :: extractMin(){
     //swap keys for 0 and end of heap
     int temp = H[0].getKey();
     cout << "Deleted key: " << temp << "\n";
     H[0].setKey(H[size-1].getKey());
     //remake heap
     size--;
-    callCount = 1;
-    minHeapify(0, printFlag);
-    if(printFlag){
-        cout << "Number of Heapify calls: " << callCount << "\n";
-    }
+    minHeapify(0);
     return;
 }
 
-string Heap :: decreaseKey(int index, int value){
+int Heap :: decreaseKey(int index, int value){
     int swap;
     index--; //illegal move to make the index match the array
     if(index < 0 || index >= size || value >= H[index].getKey()){
-        return "Error: invalid call to DecreaseKey\n";
+        cout << "Error in DecreaseKey\n";
+        return 1;
     }
     else{
         H[index].setKey(value);
@@ -200,5 +229,5 @@ string Heap :: decreaseKey(int index, int value){
             index = getParentIndex(index);
         }
     }
-    return "";
+    return 0;
 }

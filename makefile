@@ -20,5 +20,8 @@ util.o  :util.h util.cpp
 adjacency.o  :adjacency.h adjacency.cpp
 	$(CC) $(CFLAGS) adjacency.cpp
 
+heap.o : heap.h heap.cpp
+	$(CC) $(CFLAGS) heap.cpp
+
 clean	:
 	:rm *.o

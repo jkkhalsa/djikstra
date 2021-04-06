@@ -11,23 +11,38 @@ class Vertex{
 
     private:
     int color; //1 for white, 2 for grey, 3 for black
-    int pi;     //predecessor
-    float d;    //distance from source
-    int pos;    //index in the heap array
+    Vertex* pi;     //predecessor
+    float distance;    //distance from source
+    int position;    //index in the heap array
 
+    public:
     Vertex();
+
+    int getColor();
+    void setColor(int c);
+
+    Vertex* getPi();
+    void setPi(Vertex* predecessor);
+
+    float getDistance();
+    void setDistance(float d);
+
+    int getPosition();
+    void setPosition(int pos);
 
 };
 
 class Element
 {
     private:
-    int vertex;
+    Vertex* vertex;
     float key;
 
-public:
+    public:
     Element();
     Element(int k);
+    Element(int k, Vertex* v);
+
     int getKey();
     void setKey(int k);
 };
@@ -38,7 +53,6 @@ class Heap
     int capacity;   //max size of the heap
     int size;       //current size of the heap
     Element * H;    //the actual heap, I think?
-    int callCount;  //ok this is super goddamn illegal but we're gonna count the number of minHeapify calls in a global variable
 
     public:
     Heap();
@@ -53,11 +67,11 @@ class Heap
     int getRightIndex(int index);
     int getLeftIndex(int index);
     int getParentIndex(int index);
-    int buildHeap(bool flag);
-    void minHeapify(int index, bool flag);
+    void buildHeap();
+    void minHeapify(int index);
     bool insert(int element);
-    void extractMin(bool printFlag);
-    string decreaseKey(int index, int value);
+    void extractMin();
+    int decreaseKey(int index, int value);
      
     
 };
