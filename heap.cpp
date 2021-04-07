@@ -222,21 +222,16 @@ void Heap :: movingUp(int position){
 
 }
 
-/*void Heap :: buildHeap(){
-    for(int i = (size/2)-1; i >= 0; i--){
-        minHeapify(i);
-    }
-    return;
-}
 
 //returns true if it's overflowing, false if it won't
-bool Heap :: insert(int element){
+bool Heap :: insert(Vertex* v){
     if(size+1 > capacity){
+        cout << "error: heap overflow\n";
         return true;
     }
     else{
         int swap;
-        H[size].setKey(element);
+        H[size] = new Element(0, v);
         int index = size;
         size++;
         //heapify this shit
@@ -248,4 +243,4 @@ bool Heap :: insert(int element){
         }
     }
     return false;
-}*/
+}

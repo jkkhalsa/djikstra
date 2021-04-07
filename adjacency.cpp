@@ -83,8 +83,11 @@ AdjacencyList* AdjacencyGraph :: getList(int index){
     return graph[index];
 }
 
+int AdjacencyGraph :: getGraphLength(){
+    return graphLength;
+}
+
 string AdjacencyGraph :: printGraph(){
-    cout << "printGraph called\n";
     cout << "Current List:";
     AdjacencyNode* current;
     //mostly for debug purposes to see what's in the graph

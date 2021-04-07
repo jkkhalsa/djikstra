@@ -70,8 +70,7 @@ class Heap
     int getRightIndex(int index);
     int getLeftIndex(int index);
     void minHeapify(int index);
-    /*void buildHeap();
-    bool insert(int element);*/
+    bool insert(Vertex* v);
     Element* extractMin();
     int decreaseKey(int index, int value);
     void movingUp(int position);

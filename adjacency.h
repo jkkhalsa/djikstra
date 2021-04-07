@@ -65,6 +65,8 @@ class AdjacencyGraph
     void setList(int index, AdjacencyList* list);
     AdjacencyList* getList(int index);
 
+    int getGraphLength();
+
     string printGraph();
 
 };

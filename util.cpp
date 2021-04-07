@@ -1,5 +1,6 @@
 #include "adjacency.h"
 #include "util.h"
+#include "heap.h"
 
 #include<iostream>
 #include<fstream>
@@ -53,7 +54,6 @@ AdjacencyGraph* createGraph(string fileName, bool d){
             if(!isDirected){
                 if(graph->getList(vertexV) != NULL){
                     graph->getList(vertexV)->insertEdge(new AdjacencyNode(vertexU, weight));
-                    cout << "\nedge inserted: " << vertexV << " -> " << vertexU;
                     cout << "\nedge "<< vertexU <<  " inserted successfully on " << vertexV;
                 }
                 else{
@@ -66,7 +66,26 @@ AdjacencyGraph* createGraph(string fileName, bool d){
         return graph;
     }
     else{
-        cout << "error file fucked up\n";
+        cout << "error, error, file fucked up\n";
         return nullptr;
     }
+}
+
+int Dijkstra(AdjacencyGraph* graph, int start, int target){
+    int graphLength = graph->getGraphLength();
+    Vertex** nodeList = createNodeList(graph);
+    Heap* heap = new Heap(graphLength);
+    
+}
+
+
+
+//index in the node list tells you what node it is
+Vertex** createNodeList(AdjacencyGraph* graph){
+    int graphLength = graph->getGraphLength();
+    Vertex** nodeList = new Vertex*[graphLength];
+    for(int i = 1; i < graphLength; i++){
+        nodeList[i] = new Vertex();
+    }
+    return nodeList;
 }
