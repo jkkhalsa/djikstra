@@ -192,7 +192,6 @@ Element* Heap :: extractMin(){
 
 
 int Heap :: decreaseKey(int index, int value){
-    int swap;
     index--; //illegal move to make the index match the array
     if(index < 0 || index >= size || value >= H[index].getKey()){
         cout << "Error in DecreaseKey\n";
@@ -201,12 +200,6 @@ int Heap :: decreaseKey(int index, int value){
     else{
         H[index].setKey(value);
         //heapify this shit
-        /*while(index > 0 && H[getParentIndex(index)].getKey() > H[index].getKey()){
-            swap = H[getParentIndex(index)].getKey();
-            H[getParentIndex(index)].setKey(H[index].getKey());
-            H[index].setKey(swap);
-            index = getParentIndex(index);
-        }*/
         movingUp(index);
     }
     return 0;
