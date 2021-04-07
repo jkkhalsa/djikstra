@@ -17,6 +17,8 @@ class Vertex{
 
     public:
     Vertex();
+    //distance first, color second - 1 is white, 2 is grey, 3 is black
+    Vertex(int d, int c);
 
     int getColor();
     void setColor(int c);
@@ -46,6 +48,7 @@ class Element
     int getKey();
     void setKey(int k);
 
+    void setVertex(Vertex* v);
     Vertex* getVertex();
 };
 
@@ -65,7 +68,6 @@ class Heap
     std::string toString(bool choice);
     void setElement(int index, int key);
     bool setSize(int s);
-    //new functions for project 2
     int getParentIndex(int index);
     int getRightIndex(int index);
     int getLeftIndex(int index);
@@ -74,6 +76,9 @@ class Heap
     Element* extractMin();
     int decreaseKey(int index, int value);
     void movingUp(int position);
+
+    bool isEmpty();
+    
     
 };
 

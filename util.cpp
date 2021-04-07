@@ -75,6 +75,10 @@ int Dijkstra(AdjacencyGraph* graph, int start, int target){
     int graphLength = graph->getGraphLength();
     Vertex** nodeList = createNodeList(graph);
     Heap* heap = new Heap(graphLength);
+    heap->insert(new Vertex(0, 2));
+    while(!(heap->isEmpty())){
+
+    }
     
 }
 

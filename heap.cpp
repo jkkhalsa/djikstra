@@ -11,6 +11,12 @@ Vertex :: Vertex(){
     distance = -1;
 }
 
+Vertex :: Vertex(int d, int c){
+    distance = d;
+    color = c;
+    pi = nullptr;
+}
+
 int Vertex :: getColor(){
     return color;
 }
@@ -69,6 +75,9 @@ Vertex* Element :: getVertex(){
     return vertex;
 }
 
+void Element :: setVertex(Vertex* v){
+    vertex = v;
+}
 
 
 
@@ -231,16 +240,20 @@ bool Heap :: insert(Vertex* v){
     }
     else{
         int swap;
-        H[size] = new Element(0, v);
+        //add the new element to the heap
+        H[size].setKey(0);
+        H[size].setVertex(v);
         int index = size;
         size++;
-        //heapify this shit
-        while(index > 0 && H[getParentIndex(index)].getKey() > H[index].getKey()){
-            swap = H[getParentIndex(index)].getKey();
-            H[getParentIndex(index)].setKey(H[index].getKey());
-            H[index].setKey(swap);
-            index = getParentIndex(index);
-        }
+        //put it in its proper place
+        movingUp(size-1);
+    }
+    return false;
+}
+
+bool Heap :: isEmpty(){
+    if(size = 0){
+        return true;
     }
     return false;
 }
