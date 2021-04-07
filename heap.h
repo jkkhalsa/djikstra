@@ -45,6 +45,8 @@ class Element
 
     int getKey();
     void setKey(int k);
+
+    Vertex* getVertex();
 };
 
 class Heap
@@ -59,20 +61,20 @@ class Heap
     Heap(int n);
     int getCapacity();
     int getSize();
-    int getElement(int index);
+    Element* getElement(int index);
     std::string toString(bool choice);
     void setElement(int index, int key);
     bool setSize(int s);
     //new functions for project 2
+    int getParentIndex(int index);
     int getRightIndex(int index);
     int getLeftIndex(int index);
-    int getParentIndex(int index);
-    void buildHeap();
     void minHeapify(int index);
-    bool insert(int element);
-    void extractMin();
+    /*void buildHeap();
+    bool insert(int element);*/
+    Element* extractMin();
     int decreaseKey(int index, int value);
-     
+    void movingUp(int position);
     
 };
 

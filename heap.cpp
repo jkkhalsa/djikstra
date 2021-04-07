@@ -65,6 +65,10 @@ void Element :: setKey(int k){
     return;
 }
 
+Vertex* Element :: getVertex(){
+    return vertex;
+}
+
 
 
 
@@ -99,8 +103,8 @@ bool Heap :: setSize(int s){
     
 }
 
-int Heap :: getElement(int index){
-    return H[index].getKey();
+Element* Heap :: getElement(int index){
+    return &H[index];
 }
 
 //send true in choice for writing to file, false for writing to console
@@ -134,21 +138,19 @@ void Heap :: setElement(int index, int key){
     return;
 }
 
-
-//functions now required for project 2
-
-//gets index of left child
-int Heap :: getLeftIndex(int index){
-    return index*2 + 1;
+int Heap :: getParentIndex(int index){
+    return (index-1)/2;
 }
+
 
 //gets index of right child
 int Heap :: getRightIndex(int index){
     return index*2 + 2;
 }
 
-int Heap :: getParentIndex(int index){
-    return (index-1)/2;
+//gets index of left child
+int Heap :: getLeftIndex(int index){
+    return index*2 + 1;
 }
 
 
@@ -168,12 +170,66 @@ void Heap :: minHeapify(int parentIndex){
         temp = H[smallest].getKey();
         H[smallest].setKey(H[parentIndex].getKey());
         H[parentIndex].setKey(temp);
+
+        //NEW - update position in vertex
+        H[smallest].getVertex()->setPosition(smallest);
+        H[parentIndex].getVertex()->setPosition(parentIndex);
+
         minHeapify(smallest);
     }
     return;
 }
 
-void Heap :: buildHeap(){
+Element* Heap :: extractMin(){
+    //swap keys for 0 and end of heap
+    Element* temp = &H[0];
+    H[0].setKey(H[size-1].getKey());
+    //remake heap
+    size--;
+    minHeapify(0);
+    return temp;
+}
+
+
+int Heap :: decreaseKey(int index, int value){
+    int swap;
+    index--; //illegal move to make the index match the array
+    if(index < 0 || index >= size || value >= H[index].getKey()){
+        cout << "Error in DecreaseKey\n";
+        return 1;
+    }
+    else{
+        H[index].setKey(value);
+        //heapify this shit
+        /*while(index > 0 && H[getParentIndex(index)].getKey() > H[index].getKey()){
+            swap = H[getParentIndex(index)].getKey();
+            H[getParentIndex(index)].setKey(H[index].getKey());
+            H[index].setKey(swap);
+            index = getParentIndex(index);
+        }*/
+        movingUp(index);
+    }
+    return 0;
+}
+
+void Heap :: movingUp(int position){
+    int parent;
+    Element temp;
+    parent = getParentIndex(position);
+    if(position > 0 && H[position].getKey() < H[parent].getKey()){
+        temp = H[position];
+        H[position] = H[parent];
+        H[parent] = temp;
+        //swapped now - so update the position in vertex
+        H[position].getVertex()->setPosition(position);
+        H[parent].getVertex()->setPosition(parent);
+        //do this again
+        movingUp(parent);
+    }
+
+}
+
+/*void Heap :: buildHeap(){
     for(int i = (size/2)-1; i >= 0; i--){
         minHeapify(i);
     }
@@ -199,35 +255,4 @@ bool Heap :: insert(int element){
         }
     }
     return false;
-}
-
-void Heap :: extractMin(){
-    //swap keys for 0 and end of heap
-    int temp = H[0].getKey();
-    cout << "Deleted key: " << temp << "\n";
-    H[0].setKey(H[size-1].getKey());
-    //remake heap
-    size--;
-    minHeapify(0);
-    return;
-}
-
-int Heap :: decreaseKey(int index, int value){
-    int swap;
-    index--; //illegal move to make the index match the array
-    if(index < 0 || index >= size || value >= H[index].getKey()){
-        cout << "Error in DecreaseKey\n";
-        return 1;
-    }
-    else{
-        H[index].setKey(value);
-        //heapify this shit
-        while(index > 0 && H[getParentIndex(index)].getKey() > H[index].getKey()){
-            swap = H[getParentIndex(index)].getKey();
-            H[getParentIndex(index)].setKey(H[index].getKey());
-            H[index].setKey(swap);
-            index = getParentIndex(index);
-        }
-    }
-    return 0;
-}
+}*/
