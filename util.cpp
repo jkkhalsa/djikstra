@@ -75,8 +75,44 @@ int Dijkstra(AdjacencyGraph* graph, int start, int target){
     int graphLength = graph->getGraphLength();
     Vertex** nodeList = createNodeList(graph);
     Heap* heap = new Heap(graphLength);
-    heap->insert(new Vertex(0, 2));
+    Vertex* u;
+    Vertex* end = nodeList[target];
+
+    AdjacencyList* workingList;
+    AdjacencyNode* workingEdge;
+    Vertex* currentVertex;
+    bool isEnd;
+
+    //insert the first node into the heap
+    nodeList[start]->setColor(2);
+    heap->insert(nodeList[start]);
+    //loop - while there remains things in the heap, run dijkstra
     while(!(heap->isEmpty())){
+        //extract the current vertex and set it to black
+        u = heap->extractMin()->getVertex();
+        u->setColor(3);
+        //if the extracted vertex is the same as the target, return 0
+        if(u = end){
+            return 0;
+        }
+        //for each of u's adjacent vertices, make them grey, update their distances, and queue them up
+        workingList = graph->getList(u->getNode());
+        workingEdge = workingList->getHead();
+        currentVertex = nodeList[workingEdge->getVertex()];
+        isEnd = false;
+        while(!(isEnd)){
+            if(currentVertex->getColor() == 1){
+
+            }
+
+
+
+            //set up the next iteration
+            isEnd = workingEdge->isTail();
+            if(!isEnd){
+                workingEdge = workingEdge->returnNext();
+            }
+        }
 
     }
     
@@ -89,7 +125,7 @@ Vertex** createNodeList(AdjacencyGraph* graph){
     int graphLength = graph->getGraphLength();
     Vertex** nodeList = new Vertex*[graphLength];
     for(int i = 1; i < graphLength; i++){
-        nodeList[i] = new Vertex();
+        nodeList[i] = new Vertex(i);
     }
     return nodeList;
 }

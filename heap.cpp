@@ -9,17 +9,21 @@ Vertex :: Vertex(){
     color = 1;
     pi = nullptr;
     distance = -1;
+    node = -1;
 }
 
-Vertex :: Vertex(int d, int c){
-    distance = d;
-    color = c;
+Vertex :: Vertex(int n){
+    distance = -1;
+    color = 1;
     pi = nullptr;
+    node = n;
 }
 
+//1 is white, 2 is gray, 3 is black
 int Vertex :: getColor(){
     return color;
 }
+//1 is white, 2 is gray, 3 is black
 void Vertex :: setColor(int c){
     color = c;
 }

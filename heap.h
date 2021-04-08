@@ -3,6 +3,7 @@
 
 #ifndef HEAP_H
 #define HEAP_H
+#include "adjacency.h"
 
 #include <string>
 using namespace std;
@@ -14,11 +15,12 @@ class Vertex{
     Vertex* pi;     //predecessor
     float distance;    //distance from source
     int position;    //index in the heap array
+    int node;       //identifier for what node it is in the chart
 
     public:
     Vertex();
     //distance first, color second - 1 is white, 2 is grey, 3 is black
-    Vertex(int d, int c);
+    Vertex(int n);
 
     int getColor();
     void setColor(int c);
@@ -31,6 +33,10 @@ class Vertex{
 
     int getPosition();
     void setPosition(int pos);
+
+    int getNode();
+    void setNode(int n);
+
 
 };
 
@@ -78,7 +84,7 @@ class Heap
     void movingUp(int position);
 
     bool isEmpty();
-    
+
     
 };
 
