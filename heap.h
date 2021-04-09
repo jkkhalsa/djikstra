@@ -35,7 +35,6 @@ class Vertex{
     void setPosition(int pos);
 
     int getNode();
-    void setNode(int n);
 
 
 };
@@ -64,10 +63,11 @@ class Heap
     int capacity;   //max size of the heap
     int size;       //current size of the heap
     Element * H;    //the actual heap, I think?
+    bool writeFlag;
 
     public:
     Heap();
-    Heap(int n);
+    Heap(int n, bool writeFlag);
     int getCapacity();
     int getSize();
     Element* getElement(int index);

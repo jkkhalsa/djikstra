@@ -2,7 +2,8 @@
 #define UTIL_H
 
 #include <string>
-#include "heap.h";
+#include "heap.h"
+#include "adjacency.h"
 using namespace std;
 
 class AdjacencyList;
@@ -12,7 +13,7 @@ class AdjacencyNode;
 //creates a pointer to an adjacency graph created by reading the given file
 AdjacencyGraph* createGraph(string fileName, bool d);
 
-int Dijkstra(AdjacencyGraph* graph, int start, int target);
+Vertex** Dijkstra(AdjacencyGraph* graph, int start, int target, bool writeFlag);
 
 Vertex** createNodeList(AdjacencyGraph* graph);
 

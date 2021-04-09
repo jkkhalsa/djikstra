@@ -27,7 +27,6 @@ AdjacencyNode :: AdjacencyNode(int v, float w){
 
 void AdjacencyNode :: setNext(AdjacencyNode* n){
     next = n;
-    cout << "\nnext on " << vertex << " is set to " << n->getVertex();
 }
 
 AdjacencyNode* AdjacencyNode :: returnNext(){
@@ -49,6 +48,9 @@ int AdjacencyNode :: getVertex(){
     return vertex;
 }
 
+float AdjacencyNode :: getWeight(){
+    return weight;
+}
 
 //adjacency list methods
 
@@ -58,7 +60,6 @@ AdjacencyList :: AdjacencyList(AdjacencyNode* h){
 }
 
 void AdjacencyList :: insertEdge(AdjacencyNode* h){
-    cout << "\ninsert edge called";
     h->setNext(head);
     head = h;
 }
@@ -100,5 +101,6 @@ string AdjacencyGraph :: printGraph(){
                 cout << " > " << current->getVertex();
             }
     }
+    delete current;
     return "\n";
 }

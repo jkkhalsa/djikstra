@@ -30,7 +30,6 @@ class AdjacencyNode
     void setVertex(int v);
     int getVertex();
 
-    void setWeight(float w);
     float getWeight();
 };
 

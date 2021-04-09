@@ -31,19 +31,19 @@ AdjacencyGraph* createGraph(string fileName, bool d){
 
         //read the contents into the graph
         for(int i = 1; i <= numEdges; i++){
-            cout << "\ntime for loop " << i;
+            //cout << "\ntime for loop " << i;
             infile >> vertexU;
             infile >> vertexV;
             infile >> weight;
 
             //DEBUG PRINT STATEMENTS
-            cout << "\nvertexU is " << vertexU << "\nvertexV is " << vertexV << "\nweight is " << weight;
+            //cout << "\nvertexU is " << vertexU << "\nvertexV is " << vertexV << "\nweight is " << weight;
 
             //graph starts from 0, but nodes start from one, so let's just ignore the zero index lmao
             //insert vertex V into U's adjacency list
             if(graph->getList(vertexU) != NULL){
                 graph->getList(vertexU)->insertEdge(new AdjacencyNode(vertexV, weight));
-                cout << "\nedge inserted: " << vertexU << " -> " << vertexV;
+                //cout << "\nedge inserted: " << vertexU << " -> " << vertexV;
             }
             else{
                 graph->setList(vertexU, new AdjacencyList(new AdjacencyNode(vertexV, weight)));
@@ -54,7 +54,7 @@ AdjacencyGraph* createGraph(string fileName, bool d){
             if(!isDirected){
                 if(graph->getList(vertexV) != NULL){
                     graph->getList(vertexV)->insertEdge(new AdjacencyNode(vertexU, weight));
-                    cout << "\nedge "<< vertexU <<  " inserted successfully on " << vertexV;
+                    //cout << "\nedge "<< vertexU <<  " inserted successfully on " << vertexV;
                 }
                 else{
                     graph->setList(vertexV, new AdjacencyList(new AdjacencyNode(vertexU, weight)));
@@ -71,10 +71,10 @@ AdjacencyGraph* createGraph(string fileName, bool d){
     }
 }
 
-int Dijkstra(AdjacencyGraph* graph, int start, int target){
+Vertex** Dijkstra(AdjacencyGraph* graph, int start, int target, bool writeFlag){
     int graphLength = graph->getGraphLength();
     Vertex** nodeList = createNodeList(graph);
-    Heap* heap = new Heap(graphLength);
+    Heap* heap = new Heap(graphLength, writeFlag);
     Vertex* u;
     Vertex* end = nodeList[target];
 
@@ -91,9 +91,10 @@ int Dijkstra(AdjacencyGraph* graph, int start, int target){
         //extract the current vertex and set it to black
         u = heap->extractMin()->getVertex();
         u->setColor(3);
-        //if the extracted vertex is the same as the target, return 0
-        if(u = end){
-            return 0;
+        //if the extracted vertex is the same as the target, return the list
+        if(u == end){
+            //actually just pop down to the end of the loop so we can clean up our shit lol
+            break;
         }
         //for each of u's adjacent vertices, make them grey, update their distances, and queue them up
         workingList = graph->getList(u->getNode());
@@ -123,6 +124,13 @@ int Dijkstra(AdjacencyGraph* graph, int start, int target){
         }
 
     }
+    /*delete heap;
+    delete u;
+    delete end;
+    delete workingList;
+    delete workingEdge;
+    delete currentVertex;*/
+    return nodeList;
     
 }
 

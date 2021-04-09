@@ -49,6 +49,10 @@ void Vertex :: setPosition(int pos){
     position = pos;
 }
 
+int Vertex :: getNode(){
+    return node;
+}
+
 
 
 //implementations of the Element class
@@ -92,10 +96,11 @@ Heap :: Heap(){
     H = new Element[capacity + 1];
 }
 
-Heap :: Heap(int n){
+Heap :: Heap(int n, bool w){
     capacity = n;
     size = 0;
     H = new Element[capacity + 1];
+    writeFlag = w;
 }
 
 int Heap :: getCapacity(){
@@ -243,11 +248,9 @@ bool Heap :: insert(Vertex* v){
         return true;
     }
     else{
-        int swap;
         //add the new element to the heap
         H[size].setKey(0);
         H[size].setVertex(v);
-        int index = size;
         size++;
         //put it in its proper place
         movingUp(size-1);
@@ -256,7 +259,7 @@ bool Heap :: insert(Vertex* v){
 }
 
 bool Heap :: isEmpty(){
-    if(size = 0){
+    if(size == 0){
         return true;
     }
     return false;
