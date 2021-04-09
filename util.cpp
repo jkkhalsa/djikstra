@@ -101,11 +101,19 @@ int Dijkstra(AdjacencyGraph* graph, int start, int target){
         currentVertex = nodeList[workingEdge->getVertex()];
         isEnd = false;
         while(!(isEnd)){
+            //if this hasn't been discovered, color in the edge
             if(currentVertex->getColor() == 1){
-
+                currentVertex->setDistance(u->getDistance() + workingEdge->getWeight());
+                currentVertex->setPi(u);
+                currentVertex->setColor(2);
+                heap->insert(currentVertex);
             }
-
-
+            //if it has been discovered and this is a shorter path, update the edge
+            else if(currentVertex->getDistance() > (u->getDistance() + workingEdge->getWeight())){
+                currentVertex->setDistance(u->getDistance() + workingEdge->getWeight());
+                currentVertex->setPi(u);
+                heap->decreaseKey(currentVertex->getPosition(), currentVertex->getDistance());
+            }
 
             //set up the next iteration
             isEnd = workingEdge->isTail();
