@@ -17,6 +17,6 @@ Vertex** Dijkstra(AdjacencyGraph* graph, int start, int target, bool writeFlag);
 
 Vertex** createNodeList(AdjacencyGraph* graph);
 
-string findShortestPath(Vertex** nodeList, int source, int destination);
+void findShortestPath(Vertex** nodeList, int source, int destination);
 
 #endif

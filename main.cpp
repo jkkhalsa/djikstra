@@ -39,6 +39,7 @@ int main(int argc, char* argv[]){
             cin >> source;
             cin >> destination;
             cin >> flag;
+            cout << "Query: find " << source << " " << destination << " " << flag << "\n";
             if(source < graph->getGraphLength() && source != destination && (flag == 0 || flag == 1)){
                 if(flag == 1){
                     writeFlag = true;
@@ -48,7 +49,6 @@ int main(int argc, char* argv[]){
                 }
                 recentFind = Dijkstra(graph, source, destination, writeFlag);
                 hasSearched = true;
-                cout << "returned from dijkstra\n";
                 /*//debug
                 cout << "printing results of graph\n";
                 cout << "recent find's first node is " << recentFind[1]->getNode();
@@ -64,16 +64,23 @@ int main(int argc, char* argv[]){
             cin >> query; //to get rid of "path"
             cin >> s;
             cin >> d;
+            cout << "Query: write path " << s << " " << d << "\n";
             if(!hasSearched){
                 cout << "Error: no path computation done\n";
             }
             else if(source != s || d > graph->getGraphLength()-1){
-                cout << "Errror: invalid source destination pair\n";
+                cout << "Error: invalid source destination pair\n";
                 //cout << "DEBUG: source is " << source << ", s is " << s << ", d is " << d << ", and the length of the graph is " << graph->getGraphLength() << "\n";
             }
             else if(recentFind[d]->getColor() == 3){
                 cout << "Shortest path: <";
-                cout << findShortestPath(recentFind, s, d);
+                findShortestPath(recentFind, s, d);
+                cout << ">\n";
+            }
+            else if(recentFind[d]->getColor() == 2){
+                cout << "Path not known to be shortest: <";
+                findShortestPath(recentFind, s, d);
+                cout << ">\n";
             }
 
         }

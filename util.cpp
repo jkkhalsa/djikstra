@@ -140,7 +140,6 @@ Vertex** Dijkstra(AdjacencyGraph* graph, int start, int target, bool writeFlag){
     delete workingEdge;
     delete currentVertex;*/
 
-    cout << "returning the nodeList\n";
     return nodeList;
     
 }
@@ -153,16 +152,29 @@ Vertex** createNodeList(AdjacencyGraph* graph){
     Vertex** nodeList = new Vertex*[graphLength];
     for(int i = 1; i < graphLength; i++){
         nodeList[i] = new Vertex(i);
-        cout << "added vertex " << nodeList[i]->getNode() << " to the nodeList\n";
     }
     return nodeList;
 }
 
 
 //find and return a csv list of the shortest computed path in the list
-string findShortestPath(Vertex** nodeList, int source, int destination){
-    string result;
+void findShortestPath(Vertex** nodeList, int source, int destination){
+    //store this in an adjacency list for the linkedlist capability of inserting at head
+    AdjacencyList path = AdjacencyList(new AdjacencyNode(destination));
+    int current = destination;
+    int previous;
+    while(current != source){
+        cout << "DEBUG: current is " << current << " and source is " << source << "\n";
+        previous = nodeList[current]->getPi()->getNode();
+        path.insertEdge(new AdjacencyNode(previous));
+        current = previous;
+        cout << "DEBUG: current is now " << current << "after setting it to previous value\n";
+    }
+    AdjacencyNode* reading = path.getHead();
+    while(!(reading->isTail())){
+        cout << reading->getVertex() << ", ";
 
-    return result;
+    }
+    cout << reading->getVertex();
 
 }
