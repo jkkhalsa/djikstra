@@ -14,9 +14,12 @@ int main(int argc, char* argv[]){
     AdjacencyGraph* graph;
 
     Vertex** recentFind;
+    bool hasSearched = false;
 
     int source;
+    int s;
     int destination;
+    int d;
     int flag;
 
     if(argc == 3){
@@ -44,19 +47,38 @@ int main(int argc, char* argv[]){
                     writeFlag = false;
                 }
                 recentFind = Dijkstra(graph, source, destination, writeFlag);
+                hasSearched = true;
                 cout << "returned from dijkstra\n";
-                //debug
+                /*//debug
                 cout << "printing results of graph\n";
                 cout << "recent find's first node is " << recentFind[1]->getNode();
                 for(int i = 1; i < graph->getGraphLength(); i++){
                     recentFind[i]->printVertex();
-                }
+                }*/
             }
             else{
                 cout << "Error: invalid find query\n";
             }  
         }
+        if(query == "write"){
+            cin >> query; //to get rid of "path"
+            cin >> s;
+            cin >> d;
+            if(!hasSearched){
+                cout << "Error: no path computation done\n";
+            }
+            else if(source != s || d > graph->getGraphLength()-1){
+                cout << "Errror: invalid source destination pair\n";
+                //cout << "DEBUG: source is " << source << ", s is " << s << ", d is " << d << ", and the length of the graph is " << graph->getGraphLength() << "\n";
+            }
+            else if(recentFind[d]->getColor() == 3){
+                cout << "Shortest path: <";
+                cout << findShortestPath(recentFind, s, d);
+            }
+
+        }
     }
+    cout << "Query: stop\n";
     //gotta free memory here
 
     

@@ -157,3 +157,12 @@ Vertex** createNodeList(AdjacencyGraph* graph){
     }
     return nodeList;
 }
+
+
+//find and return a csv list of the shortest computed path in the list
+string findShortestPath(Vertex** nodeList, int source, int destination){
+    string result;
+
+    return result;
+
+}
