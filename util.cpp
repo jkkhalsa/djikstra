@@ -85,11 +85,11 @@ Vertex** Dijkstra(AdjacencyGraph* graph, int start, int target, bool writeFlag){
 
     //insert the first node into the heap
     nodeList[start]->setColor(2);
-    heap->insert(nodeList[start]);
+    heap->insert(nodeList[start], 0);
     //loop - while there remains things in the heap, run dijkstra
     while(!(heap->isEmpty())){
         //extract the current vertex and set it to black
-        u = heap->extractMin()->getVertex();
+        u = heap->extractMin();
         u->setColor(3);
         //if the extracted vertex is the same as the target, return the list
         if(u == end){
@@ -105,9 +105,10 @@ Vertex** Dijkstra(AdjacencyGraph* graph, int start, int target, bool writeFlag){
             //if this hasn't been discovered, color in the edge
             if(currentVertex->getColor() == 1){
                 currentVertex->setDistance(u->getDistance() + workingEdge->getWeight());
+                cout << "just set distance - distance of current vertex from source is " << currentVertex->getDistance() << "\n";
                 currentVertex->setPi(u);
                 currentVertex->setColor(2);
-                heap->insert(currentVertex);
+                heap->insert(currentVertex, currentVertex->getDistance());
             }
             //if it has been discovered and this is a shorter path, update the edge
             else if(currentVertex->getDistance() > (u->getDistance() + workingEdge->getWeight())){

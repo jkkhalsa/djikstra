@@ -53,6 +53,21 @@ int Vertex :: getNode(){
     return node;
 }
 
+void Vertex :: printVertex(){
+    cout << "Vertex " << node << ":\tColor -> ";
+    if(color == 1){
+        cout << "white";
+    }
+    else if(color == 2){
+        cout << "gray";
+    }
+    else if(color == 3){
+        cout << "black";
+    }
+    cout << "\tDistance -> " << distance << "\tPredecessor -> " << pi->getNode();
+    return;
+}
+
 
 
 //implementations of the Element class
@@ -198,24 +213,25 @@ void Heap :: minHeapify(int parentIndex){
     return;
 }
 
-Element* Heap :: extractMin(){
+Vertex* Heap :: extractMin(){
     //swap keys for 0 and end of heap
-    Element* temp = &H[0];
+    Element temp = H[0];
     H[0].setKey(H[size-1].getKey());
     //remake heap
     size--;
     minHeapify(0);
-    return temp;
+    cout << "Delete vertex " << temp.getVertex()->getNode() << ", key=" << temp.getKey() << "\n";
+    return temp.getVertex();
 }
 
 
 int Heap :: decreaseKey(int index, int value){
-    index--; //illegal move to make the index match the array
     if(index < 0 || index >= size || value >= H[index].getKey()){
         cout << "Error in DecreaseKey\n";
         return 1;
     }
     else{
+        cout << "Decrease key of vertex " << H[index].getVertex()->getNode() << ", from " << H[index].getKey() << " to " << value << "\n";
         H[index].setKey(value);
         //heapify this shit
         movingUp(index);
@@ -224,6 +240,7 @@ int Heap :: decreaseKey(int index, int value){
 }
 
 void Heap :: movingUp(int position){
+    cout << "moving up position " << position << " with vertex of " << H[position].getVertex()->getNode() << "\n";
     int parent;
     Element temp;
     parent = getParentIndex(position);
@@ -242,18 +259,20 @@ void Heap :: movingUp(int position){
 
 
 //returns true if it's overflowing, false if it won't
-bool Heap :: insert(Vertex* v){
+bool Heap :: insert(Vertex* v, int k){
     if(size+1 > capacity){
         cout << "error: heap overflow\n";
         return true;
     }
     else{
         //add the new element to the heap
-        H[size].setKey(0);
+        H[size].setKey(k);
         H[size].setVertex(v);
+        cout << "Insert vertex " << H[size].getVertex()->getNode() << ", key " << H[size].getKey() << "\n";
+        H[size].getVertex()->setPosition(size);
         size++;
         //put it in its proper place
-        movingUp(size-1);
+        movingUp(H[size-1].getVertex()->getPosition());
     }
     return false;
 }

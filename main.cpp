@@ -43,7 +43,12 @@ int main(int argc, char* argv[]){
                 else{
                     writeFlag = false;
                 }
-                recentFind = Dijkstra(graph, source, destination, flag);
+                recentFind = Dijkstra(graph, source, destination, writeFlag);
+                //debug
+                cout << "printing results of graph";
+                for(int i = 1; i < graph->getGraphLength(); i++){
+                    recentFind[i]->printVertex();
+                }
             }
             else{
                 cout << "Error: invalid find query\n";

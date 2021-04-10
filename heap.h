@@ -36,6 +36,8 @@ class Vertex{
 
     int getNode();
 
+    void printVertex();
+
 
 };
 
@@ -78,8 +80,8 @@ class Heap
     int getRightIndex(int index);
     int getLeftIndex(int index);
     void minHeapify(int index);
-    bool insert(Vertex* v);
-    Element* extractMin();
+    bool insert(Vertex* v, int k);
+    Vertex* extractMin();
     int decreaseKey(int index, int value);
     void movingUp(int position);
 
