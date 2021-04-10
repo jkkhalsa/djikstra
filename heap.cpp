@@ -8,12 +8,12 @@ using namespace std;
 Vertex :: Vertex(){
     color = 1;
     pi = nullptr;
-    distance = -1;
+    distance = 0;
     node = -1;
 }
 
 Vertex :: Vertex(int n){
-    distance = -1;
+    distance = 0;
     color = 1;
     pi = nullptr;
     node = n;
@@ -54,6 +54,7 @@ int Vertex :: getNode(){
 }
 
 void Vertex :: printVertex(){
+    cout << "called printVertex\n";
     cout << "Vertex " << node << ":\tColor -> ";
     if(color == 1){
         cout << "white";
@@ -188,21 +189,27 @@ int Heap :: getLeftIndex(int index){
 
 
 void Heap :: minHeapify(int parentIndex){
+    //cout << "in min heapify\n";
     int leftIndex = getLeftIndex(parentIndex);
     int rightIndex = getRightIndex(parentIndex);
     int smallest = parentIndex;
-    int temp;
+    //cout << "all indexes in min heapify gotten\n";
+    Element temp;
+    //cout << "size is " << size << ", left index is " << leftIndex << ", right index is " << rightIndex << ", and parentIndex is "<< parentIndex << "\n";
     if(leftIndex <= size && H[leftIndex].getKey() < H[parentIndex].getKey()){
+        //cout << "left child is the smallest";
         smallest = leftIndex;
     }
-    if(leftIndex <= size && H[rightIndex].getKey() < H[smallest].getKey()){
+    if(rightIndex <= size && H[rightIndex].getKey() < H[smallest].getKey()){
+        //cout << "right child is the smallest";
         smallest = rightIndex;
     }
     if(smallest != parentIndex){
+        //cout << "swapping " << H[smallest].getVertex()->getNode() << " with its parent " << H[parentIndex].getVertex()->getNode() << "\n";
         //swap the two
-        temp = H[smallest].getKey();
-        H[smallest].setKey(H[parentIndex].getKey());
-        H[parentIndex].setKey(temp);
+        temp = H[smallest];
+        H[smallest] = H[parentIndex];
+        H[parentIndex] = temp;
 
         //NEW - update position in vertex
         H[smallest].getVertex()->setPosition(smallest);
@@ -214,20 +221,24 @@ void Heap :: minHeapify(int parentIndex){
 }
 
 Vertex* Heap :: extractMin(){
+    //cout << "start of extract min, size of heap is" << size << "\n";
     //swap keys for 0 and end of heap
     Element temp = H[0];
     H[0].setKey(H[size-1].getKey());
+    H[0].setVertex(H[size-1].getVertex());
+    //cout << "set the key and vertex to their new values\n";
     //remake heap
     size--;
     minHeapify(0);
-    cout << "Delete vertex " << temp.getVertex()->getNode() << ", key=" << temp.getKey() << "\n";
+    //cout << "Delete vertex " << temp.getVertex()->getNode() << ", key=" << temp.getKey() << "\n";
     return temp.getVertex();
 }
 
 
 int Heap :: decreaseKey(int index, int value){
-    if(index < 0 || index >= size || value >= H[index].getKey()){
+    if(index < 0 || index > size || value >= H[index].getKey()){
         cout << "Error in DecreaseKey\n";
+        cout << "DEBUG DecreaseKey - index is " << index << ", size is " << size << ", value is " << value << ", and the key is " << H[index].getKey() << "\n";
         return 1;
     }
     else{
@@ -240,7 +251,7 @@ int Heap :: decreaseKey(int index, int value){
 }
 
 void Heap :: movingUp(int position){
-    cout << "moving up position " << position << " with vertex of " << H[position].getVertex()->getNode() << "\n";
+    //cout << "moving up position " << position << " with vertex of " << H[position].getVertex()->getNode() << "\n";
     int parent;
     Element temp;
     parent = getParentIndex(position);
@@ -268,7 +279,7 @@ bool Heap :: insert(Vertex* v, int k){
         //add the new element to the heap
         H[size].setKey(k);
         H[size].setVertex(v);
-        cout << "Insert vertex " << H[size].getVertex()->getNode() << ", key " << H[size].getKey() << "\n";
+        cout << "Insert vertex " << H[size].getVertex()->getNode() << ", key " << H[size].getKey() << " at position " << size << "\n";
         H[size].getVertex()->setPosition(size);
         size++;
         //put it in its proper place

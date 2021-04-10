@@ -44,8 +44,10 @@ int main(int argc, char* argv[]){
                     writeFlag = false;
                 }
                 recentFind = Dijkstra(graph, source, destination, writeFlag);
+                cout << "returned from dijkstra\n";
                 //debug
-                cout << "printing results of graph";
+                cout << "printing results of graph\n";
+                cout << "recent find's first node is " << recentFind[1]->getNode();
                 for(int i = 1; i < graph->getGraphLength(); i++){
                     recentFind[i]->printVertex();
                 }
