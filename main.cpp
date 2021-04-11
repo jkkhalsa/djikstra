@@ -31,6 +31,7 @@ int main(int argc, char* argv[]){
         }
         string fileName(argv[1]);
         graph = createGraph(fileName, isDirected);
+        //graph->printGraph();
     }
 
     while(query != "stop"){

@@ -14,7 +14,7 @@ AdjacencyGraph* createGraph(string fileName, bool d){
     bool isDirected = d;
     int vertexU;
     int vertexV;
-    int weight;
+    float weight;
 
     //open file
     ifstream infile;
@@ -36,7 +36,7 @@ AdjacencyGraph* createGraph(string fileName, bool d){
             infile >> weight;
 
             //DEBUG PRINT STATEMENTS
-            //cout << "\nvertexU is " << vertexU << "\nvertexV is " << vertexV << "\nweight is " << weight;
+            cout << "\nvertexU is " << vertexU << "\nvertexV is " << vertexV << "\nweight is " << weight;
 
             //graph starts from 0, but nodes start from one, so let's just ignore the zero index lmao
             //insert vertex V into U's adjacency list
@@ -94,6 +94,7 @@ Vertex** Dijkstra(AdjacencyGraph* graph, int start, int target, bool writeFlag){
         if(u == end){
             //actually just pop down to the end of the loop so we can clean up our shit lol
             //update the zero index of the list to show we returned early
+            cout << "returned early because we think " << u->getNode() << " is equal to " << end->getNode() << "\n";
             nodeList[0]->setNode(-1);
             break;
         }
