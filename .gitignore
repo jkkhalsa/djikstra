@@ -5,6 +5,7 @@ network_files/network01.txt
 network_files/
 test_cases_posted/
 network.txt
+network02.txt
 .vscode/configurationCache.log
 .vscode/dryrun.log
 .vscode/launch.json
