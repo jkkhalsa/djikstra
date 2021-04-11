@@ -19,3 +19,4 @@ main.o
 heap.o
 util.o
 main.o
+dijkstra

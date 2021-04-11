@@ -94,7 +94,6 @@ Vertex** Dijkstra(AdjacencyGraph* graph, int start, int target, bool writeFlag){
         if(u == end){
             //actually just pop down to the end of the loop so we can clean up our shit lol
             //update the zero index of the list to show we returned early
-            cout << "returned early because we think " << u->getNode() << " is equal to " << end->getNode() << "\n";
             nodeList[0]->setNode(-1);
             break;
         }
