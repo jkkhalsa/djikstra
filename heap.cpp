@@ -72,6 +72,10 @@ void Vertex :: printVertex(){
     return;
 }
 
+Vertex :: ~Vertex(){
+    
+}
+
 
 
 //implementations of the Element class

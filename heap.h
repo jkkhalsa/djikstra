@@ -39,6 +39,8 @@ class Vertex{
 
     void printVertex();
 
+    ~Vertex();
+
 
 };
 
@@ -58,6 +60,8 @@ class Element
 
     void setVertex(Vertex* v);
     Vertex* getVertex();
+
+    ~Element();
 };
 
 class Heap
@@ -87,6 +91,8 @@ class Heap
     void movingUp(int position);
 
     bool isEmpty();
+
+    ~Heap();
 
     
 };

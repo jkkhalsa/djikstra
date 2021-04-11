@@ -31,6 +31,8 @@ class AdjacencyNode
     int getVertex();
 
     float getWeight();
+
+    ~AdjacencyNode();
 };
 
 
@@ -48,6 +50,8 @@ class AdjacencyList
     void insertEdge(AdjacencyNode* h);
 
     AdjacencyNode* getHead();
+
+    ~AdjacencyList();
 
 };
 
@@ -67,6 +71,8 @@ class AdjacencyGraph
     int getGraphLength();
 
     string printGraph();
+
+    ~AdjacencyGraph();
 
 };
 
