@@ -35,6 +35,7 @@ class Vertex{
     void setPosition(int pos);
 
     int getNode();
+    void setNode(int n);
 
     void printVertex();
 

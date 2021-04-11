@@ -52,6 +52,9 @@ void Vertex :: setPosition(int pos){
 int Vertex :: getNode(){
     return node;
 }
+void Vertex :: setNode(int n){
+    node = n;
+}
 
 void Vertex :: printVertex(){
     cout << "called printVertex\n";

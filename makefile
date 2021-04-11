@@ -1,4 +1,4 @@
-EXEC = run
+EXEC = dijkstra
 CC = g++
 CFLAGS = -c -Wall
 # $(EXEC) has the value of shell variable EXEC, which is run.

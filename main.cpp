@@ -84,6 +84,17 @@ int main(int argc, char* argv[]){
                 cout << ">\n";
                 cout << "The path weight is:\t" << recentFind[d]->getDistance() << "\n";
             }
+            //if the node is white, then it hasn't been discovered
+            //using the zero index of recentFind to tell if the heap has been emptied - 0 means everything possible is discovered, -1 means the list was prematurely returned
+            else if(recentFind[d]->getColor() == 1){
+                if(recentFind[0]->getNode() == -1){
+                    cout << "No " << s << "-" << d << " path has been computed.\n";
+                }
+                else{
+                    cout << "No " << s << "-" << d << " path exists.\n";
+                }
+
+            }
 
         }
     }

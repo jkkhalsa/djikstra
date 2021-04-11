@@ -96,6 +96,8 @@ Vertex** Dijkstra(AdjacencyGraph* graph, int start, int target, bool writeFlag){
         if(u == end){
             //cout << "returning because " << u->getNode() << " is equal to " << end->getNode() << "\n";
             //actually just pop down to the end of the loop so we can clean up our shit lol
+            //update the zero index of the list to show we returned early
+            nodeList[0]->setNode(-1);
             break;
         }
         //for each of u's adjacent vertices, make them grey, update their distances, and queue them up
@@ -150,7 +152,7 @@ Vertex** Dijkstra(AdjacencyGraph* graph, int start, int target, bool writeFlag){
 Vertex** createNodeList(AdjacencyGraph* graph){
     int graphLength = graph->getGraphLength();
     Vertex** nodeList = new Vertex*[graphLength];
-    for(int i = 1; i < graphLength; i++){
+    for(int i = 0; i < graphLength; i++){
         nodeList[i] = new Vertex(i);
     }
     return nodeList;
