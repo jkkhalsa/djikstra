@@ -56,7 +56,6 @@ float AdjacencyNode :: getWeight(){
 
 AdjacencyList :: AdjacencyList(AdjacencyNode* h){
     head = h;
-    cout << "\ncreated adjacency list";
 }
 
 void AdjacencyList :: insertEdge(AdjacencyNode* h){

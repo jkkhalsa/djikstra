@@ -50,10 +50,10 @@ class Element
     public:
     Element();
     Element(int k);
-    Element(int k, Vertex* v);
+    Element(float k, Vertex* v);
 
-    int getKey();
-    void setKey(int k);
+    float getKey();
+    void setKey(float k);
 
     void setVertex(Vertex* v);
     Vertex* getVertex();
@@ -80,9 +80,9 @@ class Heap
     int getRightIndex(int index);
     int getLeftIndex(int index);
     void minHeapify(int index);
-    bool insert(Vertex* v, int k);
+    bool insert(Vertex* v, float k);
     Vertex* extractMin();
-    int decreaseKey(int index, int value);
+    int decreaseKey(int index, float value);
     void movingUp(int position);
 
     bool isEmpty();

@@ -81,16 +81,16 @@ Element :: Element(int k){
     return;
 }
 
-Element :: Element(int k, Vertex* v){
+Element :: Element(float k, Vertex* v){
     key = k;
     vertex = v;
 }
 
-int Element :: getKey(){
+float Element :: getKey(){
     return key;
 }
 
-void Element :: setKey(int k){
+void Element :: setKey(float k){
     key = k;
     return;
 }
@@ -235,14 +235,14 @@ Vertex* Heap :: extractMin(){
 }
 
 
-int Heap :: decreaseKey(int index, int value){
+int Heap :: decreaseKey(int index, float value){
     if(index < 0 || index > size || value >= H[index].getKey()){
         cout << "Error in DecreaseKey\n";
         cout << "DEBUG DecreaseKey - index is " << index << ", size is " << size << ", value is " << value << ", and the key is " << H[index].getKey() << "\n";
         return 1;
     }
     else{
-        cout << "Decrease key of vertex " << H[index].getVertex()->getNode() << ", from " << H[index].getKey() << " to " << value << "\n";
+        cout << "Decrease key of vertex " << H[index].getVertex()->getNode() << ", from\t" << H[index].getKey() << " to\t" << value << "\n";
         H[index].setKey(value);
         //heapify this shit
         movingUp(index);
@@ -270,7 +270,7 @@ void Heap :: movingUp(int position){
 
 
 //returns true if it's overflowing, false if it won't
-bool Heap :: insert(Vertex* v, int k){
+bool Heap :: insert(Vertex* v, float k){
     if(size+1 > capacity){
         cout << "error: heap overflow\n";
         return true;
@@ -279,7 +279,7 @@ bool Heap :: insert(Vertex* v, int k){
         //add the new element to the heap
         H[size].setKey(k);
         H[size].setVertex(v);
-        cout << "Insert vertex " << H[size].getVertex()->getNode() << ", key " << H[size].getKey() << " at position " << size << "\n";
+        cout << "Insert vertex " << H[size].getVertex()->getNode() << ", key " << H[size].getKey() << "\n";
         H[size].getVertex()->setPosition(size);
         size++;
         //put it in its proper place

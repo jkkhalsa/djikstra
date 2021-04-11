@@ -25,7 +25,6 @@ AdjacencyGraph* createGraph(string fileName, bool d){
         infile >> numVertices;
         AdjacencyGraph* graph = new AdjacencyGraph(numVertices);
         infile >> numEdges;
-        cout << "\n numEdges is " << numEdges;
         infile >> loop;
         //TODO: DEBUG: make sure that actually worked lmao
 
@@ -91,11 +90,11 @@ Vertex** Dijkstra(AdjacencyGraph* graph, int start, int target, bool writeFlag){
         //cout << "heap is not empty\n";
         //extract the current vertex and set it to black
         u = heap->extractMin();
-        cout << "Delete vertex " << u->getNode() << ", key=" << u->getDistance() << "\n";
+        cout << "Delete vertex " << u->getNode() << ", key=\t" << u->getDistance() << "\n";
         u->setColor(3);
         //if the extracted vertex is the same as the target, return the list
         if(u == end){
-            cout << "returning because " << u->getNode() << " is equal to " << end->getNode() << "\n";
+            //cout << "returning because " << u->getNode() << " is equal to " << end->getNode() << "\n";
             //actually just pop down to the end of the loop so we can clean up our shit lol
             break;
         }
@@ -113,6 +112,7 @@ Vertex** Dijkstra(AdjacencyGraph* graph, int start, int target, bool writeFlag){
                 //cout << "just set distance - distance of current vertex from source is " << currentVertex->getDistance() << "\n";
                 currentVertex->setPi(u);
                 currentVertex->setColor(2);
+                cout << "Insert vertex " << u->getNode() << ", key=\t" << u->getDistance() << "\n";
                 heap->insert(currentVertex, currentVertex->getDistance());
             }
             //if it has been discovered and this is a shorter path, update the edge
@@ -164,17 +164,15 @@ void findShortestPath(Vertex** nodeList, int source, int destination){
     int current = destination;
     int previous;
     while(current != source){
-        cout << "DEBUG: current is " << current << " and source is " << source << "\n";
         previous = nodeList[current]->getPi()->getNode();
         path.insertEdge(new AdjacencyNode(previous));
         current = previous;
-        cout << "DEBUG: current is now " << current << "after setting it to previous value\n";
     }
     AdjacencyNode* reading = path.getHead();
     while(!(reading->isTail())){
         cout << reading->getVertex() << ", ";
-
+        reading = reading->returnNext();
     }
     cout << reading->getVertex();
-
+    return;
 }

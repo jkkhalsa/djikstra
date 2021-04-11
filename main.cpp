@@ -2,6 +2,7 @@
 #include "util.h"
 
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -22,15 +23,14 @@ int main(int argc, char* argv[]){
     int d;
     int flag;
 
+    cout << setprecision(4) << fixed;
+
     if(argc == 3){
         if(argv[2][0] != 'u'){
             isDirected = true;
-            cout << "isDirected is true\n";
         }
         string fileName(argv[1]);
         graph = createGraph(fileName, isDirected);
-        cout << "got out of graph building\n";
-        cout << graph->printGraph();
     }
 
     while(query != "stop"){
@@ -76,11 +76,13 @@ int main(int argc, char* argv[]){
                 cout << "Shortest path: <";
                 findShortestPath(recentFind, s, d);
                 cout << ">\n";
+                cout << "The path weight is:\t" << recentFind[d]->getDistance() << "\n";
             }
             else if(recentFind[d]->getColor() == 2){
                 cout << "Path not known to be shortest: <";
                 findShortestPath(recentFind, s, d);
                 cout << ">\n";
+                cout << "The path weight is:\t" << recentFind[d]->getDistance() << "\n";
             }
 
         }
