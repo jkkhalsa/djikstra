@@ -36,7 +36,7 @@ AdjacencyGraph* createGraph(string fileName, bool d){
             infile >> weight;
 
             //DEBUG PRINT STATEMENTS
-            cout << "\nvertexU is " << vertexU << "\nvertexV is " << vertexV << "\nweight is " << weight;
+            //cout << "\nvertexU is " << vertexU << "\nvertexV is " << vertexV << "\nweight is " << weight;
 
             //graph starts from 0, but nodes start from one, so let's just ignore the zero index lmao
             //insert vertex V into U's adjacency list
