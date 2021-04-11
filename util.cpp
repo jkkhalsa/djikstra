@@ -87,15 +87,11 @@ Vertex** Dijkstra(AdjacencyGraph* graph, int start, int target, bool writeFlag){
     heap->insert(nodeList[start], 0);
     //loop - while there remains things in the heap, run dijkstra
     while(!(heap->isEmpty())){
-        //cout << "heap is not empty\n";
         //extract the current vertex and set it to black
         u = heap->extractMin();
-        //cout << "Delete vertex " << u->getNode() << ", key=\t" << u->getDistance() << "\n";
-        printf("Delete vertex %d, key=%12.4f\n", u->getNode(), u->getDistance());
         u->setColor(3);
         //if the extracted vertex is the same as the target, return the list
         if(u == end){
-            //cout << "returning because " << u->getNode() << " is equal to " << end->getNode() << "\n";
             //actually just pop down to the end of the loop so we can clean up our shit lol
             //update the zero index of the list to show we returned early
             nodeList[0]->setNode(-1);
@@ -110,18 +106,15 @@ Vertex** Dijkstra(AdjacencyGraph* graph, int start, int target, bool writeFlag){
         while(!(isEnd)){
             //if this hasn't been discovered, color in the edge
             if(currentVertex->getColor() == 1){
-                //cout << "discovered a white vertex " << currentVertex->getNode() << "\n";
                 currentVertex->setDistance(u->getDistance() + workingEdge->getWeight());
-                //cout << "just set distance - distance of current vertex from source is " << currentVertex->getDistance() << "\n";
                 currentVertex->setPi(u);
                 currentVertex->setColor(2);
                 //cout << "Insert vertex " << u->getNode() << ", key=\t" << u->getDistance() << "\n";
-                printf("Insert vertex %d, key=%12.4f\n", u->getNode(), u->getDistance());
+                //printf("Insert vertex %d, key=%12.4f\n", u->getNode(), u->getDistance());
                 heap->insert(currentVertex, currentVertex->getDistance());
             }
             //if it has been discovered and this is a shorter path, update the edge
             else if(currentVertex->getDistance() > (u->getDistance() + workingEdge->getWeight())){
-                //cout << "discovered a gray vertex " << currentVertex->getNode() << " with heap position " << currentVertex->getPosition() << "\n";
                 currentVertex->setDistance(u->getDistance() + workingEdge->getWeight());
                 currentVertex->setPi(u);
                 heap->decreaseKey(currentVertex->getPosition(), currentVertex->getDistance());
@@ -129,7 +122,6 @@ Vertex** Dijkstra(AdjacencyGraph* graph, int start, int target, bool writeFlag){
 
             //set up the next iteration
             isEnd = workingEdge->isTail();
-            //cout << "isTail is " << isEnd << " for edge " << workingEdge->getVertex() << "\n";
             if(!isEnd){
                 workingEdge = workingEdge->returnNext();
                 currentVertex = nodeList[workingEdge->getVertex()];

@@ -234,6 +234,7 @@ Vertex* Heap :: extractMin(){
     size--;
     minHeapify(0);
     //cout << "Delete vertex " << temp.getVertex()->getNode() << ", key=" << temp.getKey() << "\n";
+    printf("Delete vertex %d, key=%12.4f\n", temp.getVertex()->getNode(), temp.getKey());
     return temp.getVertex();
 }
 
@@ -284,6 +285,7 @@ bool Heap :: insert(Vertex* v, float k){
         H[size].setKey(k);
         H[size].setVertex(v);
         //cout << "Insert vertex " << H[size].getVertex()->getNode() << ", key=\t" << H[size].getKey() << "\n";
+        printf("Insert vertex %d, key=%12.4f\n", H[size].getVertex()->getNode(), H[size].getKey());
         H[size].getVertex()->setPosition(size);
         size++;
         //put it in its proper place
