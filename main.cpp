@@ -76,13 +76,14 @@ int main(int argc, char* argv[]){
                 cout << "Shortest path: <";
                 findShortestPath(recentFind, s, d);
                 cout << ">\n";
-                cout << "The path weight is:\t" << recentFind[d]->getDistance() << "\n";
+                printf("The path weight is: %12.4f\n",recentFind[d]->getDistance());
+                //cout << "The path weight is:\t" << recentFind[d]->getDistance() << "\n";
             }
             else if(recentFind[d]->getColor() == 2){
                 cout << "Path not known to be shortest: <";
                 findShortestPath(recentFind, s, d);
                 cout << ">\n";
-                cout << "The path weight is:\t" << recentFind[d]->getDistance() << "\n";
+                printf("The path weight is: %12.4f\n",recentFind[d]->getDistance());
             }
             //if the node is white, then it hasn't been discovered
             //using the zero index of recentFind to tell if the heap has been emptied - 0 means everything possible is discovered, -1 means the list was prematurely returned

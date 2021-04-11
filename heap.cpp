@@ -241,11 +241,12 @@ Vertex* Heap :: extractMin(){
 int Heap :: decreaseKey(int index, float value){
     if(index < 0 || index > size || value >= H[index].getKey()){
         cout << "Error in DecreaseKey\n";
-        cout << "DEBUG DecreaseKey - index is " << index << ", size is " << size << ", value is " << value << ", and the key is " << H[index].getKey() << "\n";
+        //cout << "DEBUG DecreaseKey - index is " << index << ", size is " << size << ", value is " << value << ", and the key is " << H[index].getKey() << "\n";
         return 1;
     }
     else{
-        cout << "Decrease key of vertex " << H[index].getVertex()->getNode() << ", from\t" << H[index].getKey() << " to\t" << value << "\n";
+        //cout << "Decrease key of vertex " << H[index].getVertex()->getNode() << ", from\t" << H[index].getKey() << " to\t" << value << "\n";
+        printf("Decrease key of vertex %d, from %12.4f to %12.4f\n", H[index].getVertex()->getNode(), H[index].getKey(), value);
         H[index].setKey(value);
         //heapify this shit
         movingUp(index);
@@ -282,7 +283,7 @@ bool Heap :: insert(Vertex* v, float k){
         //add the new element to the heap
         H[size].setKey(k);
         H[size].setVertex(v);
-        cout << "Insert vertex " << H[size].getVertex()->getNode() << ", key " << H[size].getKey() << "\n";
+        //cout << "Insert vertex " << H[size].getVertex()->getNode() << ", key=\t" << H[size].getKey() << "\n";
         H[size].getVertex()->setPosition(size);
         size++;
         //put it in its proper place
