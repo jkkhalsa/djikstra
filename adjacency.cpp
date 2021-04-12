@@ -52,6 +52,11 @@ float AdjacencyNode :: getWeight(){
     return weight;
 }
 
+AdjacencyNode :: ~AdjacencyNode(){
+    delete next;
+}
+
+
 //adjacency list methods
 
 AdjacencyList :: AdjacencyList(AdjacencyNode* h){
@@ -65,6 +70,10 @@ void AdjacencyList :: insertEdge(AdjacencyNode* h){
 
 AdjacencyNode* AdjacencyList :: getHead(){
     return head;
+}
+
+AdjacencyList :: ~AdjacencyList(){
+    delete head;
 }
 
 
@@ -102,4 +111,11 @@ string AdjacencyGraph :: printGraph(){
     }
     delete current;
     return "\n";
+}
+
+AdjacencyGraph :: ~AdjacencyGraph(){
+    for(int i = 0; i < graphLength; i++){
+        delete graph[i];
+    }
+    delete graph;
 }

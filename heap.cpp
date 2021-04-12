@@ -73,7 +73,7 @@ void Vertex :: printVertex(){
 }
 
 Vertex :: ~Vertex(){
-    
+    delete pi;
 }
 
 
@@ -108,6 +108,10 @@ Vertex* Element :: getVertex(){
 
 void Element :: setVertex(Vertex* v){
     vertex = v;
+}
+
+Element :: ~Element(){
+    delete vertex;
 }
 
 
@@ -309,4 +313,8 @@ bool Heap :: isEmpty(){
         return true;
     }
     return false;
+}
+
+Heap :: ~Heap(){
+    delete H;
 }
