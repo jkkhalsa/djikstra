@@ -102,6 +102,11 @@ int main(int argc, char* argv[]){
     }
     cout << "Query: stop\n";
     //gotta free memory here
+    /*for(int i = 0; i < graph->getGraphLength(); i++){
+        delete(recentFind[i]);
+    }*/
+    delete recentFind;
+    delete graph;
 
     
 }
