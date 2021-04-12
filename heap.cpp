@@ -316,5 +316,5 @@ bool Heap :: isEmpty(){
 }
 
 Heap :: ~Heap(){
-    delete H;
+    delete[] H;
 }

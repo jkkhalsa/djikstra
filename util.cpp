@@ -170,5 +170,6 @@ void findShortestPath(Vertex** nodeList, int source, int destination){
         reading = reading->returnNext();
     }
     cout << reading->getVertex();
+    
     return;
 }
