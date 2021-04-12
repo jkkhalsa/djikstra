@@ -73,7 +73,7 @@ void Vertex :: printVertex(){
 }
 
 Vertex :: ~Vertex(){
-    //delete pi;
+    delete pi;
 }
 
 
@@ -316,5 +316,5 @@ bool Heap :: isEmpty(){
 }
 
 Heap :: ~Heap(){
-    //delete H;
+    delete H;
 }
